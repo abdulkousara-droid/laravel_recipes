@@ -9,8 +9,8 @@ Route::get('/', function () {
     $latestRecipes = Recipes::latest()->take(4)->get();
 
     return inertia('home', [
-        'carouselRecipes' => $carouselRecipes
-        'latestRecipes' => $latestRecipes
+        'carouselRecipes' => $carouselRecipes,
+        'latestRecipes' => $latestRecipes,
     ]);
 })->name('home');
 
