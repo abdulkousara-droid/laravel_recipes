@@ -24,12 +24,12 @@ return new class extends Migration
             $table->string('youtube_url')->nullable();
 
             //region Flags
-            $table->boolean('is_low_carb')->default(false)
-            $table->boolean('is_high_protein')->default(false)
-            $table->boolean('is_spicy')->default(false)
-            $table->boolean('is_vegetarian')->default(false)
-            $table->boolean('is_vegan')->default(false)
-            $table->boolean('is_pescatarian')->default(false)
+            $table->boolean('is_low_carb')->default(false);
+            $table->boolean('is_high_protein')->default(false);
+            $table->boolean('is_spicy')->default(false);
+            $table->boolean('is_vegetarian')->default(false);
+            $table->boolean('is_vegan')->default(false);
+            $table->boolean('is_pescatarian')->default(false);
             //endregion
 
             $table->unsignedBigInteger('view_count')->default(1);
