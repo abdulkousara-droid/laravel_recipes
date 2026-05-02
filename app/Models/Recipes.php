@@ -9,4 +9,9 @@ class Recipes extends Model
 {
     /** @use HasFactory<\Database\Factories\RecipesFactory> */
     use HasFactory;
+
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

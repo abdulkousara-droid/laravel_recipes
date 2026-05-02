@@ -19,6 +19,7 @@ class RecipesFactory extends Factory
     {
         return [
             //
+            'category_id' => mt_rand(1, 10),
             'title' => fake()->sentence(mt_rand(3, 8)),
             'excerpt' => fake()->text(),
             'instructions' => fake()->realText(400),
