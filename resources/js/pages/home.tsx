@@ -3,10 +3,9 @@ import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import HeaderLayout from "@/layouts/header-layout";
 
-export default function Home({ carouselRecipes }: any) {
-
+export default function Home({ carouselRecipes, latestRecipes }: any) {
     return (
-        <html lang="en">
+        <>
             <head>
                 <meta charSet="UTF-8" />
                 <meta
@@ -39,7 +38,7 @@ export default function Home({ carouselRecipes }: any) {
 
                 <div className="container-fluid">
                     <main className="mc-main">
-                        <Contact />
+                        <Contact contactDate={latestRecipes} />
                     </main>
 
                     <Footer />
@@ -55,6 +54,6 @@ export default function Home({ carouselRecipes }: any) {
 
                 <script src="js/scripts.js"></script>
             </body>
-        </html>
+        </>
     );
 }
