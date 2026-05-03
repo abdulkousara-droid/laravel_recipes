@@ -1,8 +1,8 @@
+import { Head } from '@inertiajs/react'; // Use this for page titles/meta
 import Carousel from "@/components/carousel";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 import HeaderLayout from "@/layouts/header-layout";
-import { Head } from '@inertiajs/react'; // Use this for page titles/meta
 
 export default function Home({ carouselRecipes, latestRecipes, categories }: any) {
 
@@ -14,7 +14,7 @@ export default function Home({ carouselRecipes, latestRecipes, categories }: any
             </Head>
 
             <HeaderLayout />
-            
+
             <div className="mc-main-full">
                 <Carousel carouselData={carouselRecipes} />
             </div>

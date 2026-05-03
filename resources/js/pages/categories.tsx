@@ -1,7 +1,7 @@
+import {Link} from "@inertiajs/react";
 import NoData from '@/components/no-data';
 import Pagination from '@/components/pagination';
 import HeaderLayout from '@/layouts/header-layout';
-
 export default function Categories({ categories }: any) {
     console.log(categories);
 
@@ -60,7 +60,7 @@ export default function Categories({ categories }: any) {
                         >
                             <input
                                 className="form-control mc-search-input"
-                                name="query"
+                                name="q"
                                 type="text"
                                 placeholder="Search..."
                                 aria-label="Search"
@@ -102,6 +102,13 @@ export default function Categories({ categories }: any) {
                         ) : (
                             <NoData />
                         )}
+
+                        <Link
+                            href={route('categories.index')}
+                            className="btn btn-outline-dark"
+                        >
+                            Clear Search
+                        </Link>
                     </div>
                 </div>
 
