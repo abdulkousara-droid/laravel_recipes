@@ -1,7 +1,6 @@
 import NoData from '@/components/no-data';
 import Pagination from '@/components/pagination';
 import HeaderLayout from '@/layouts/header-layout';
-import { Link } from '@inertiajs/react';
 
 export default function Categories({ categories }: any) {
     console.log(categories);
