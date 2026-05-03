@@ -1,5 +1,4 @@
 export default function Carousel({carouselData}: any) {
-    console.log(carouselData);
 
     return (
         <>
@@ -11,7 +10,6 @@ export default function Carousel({carouselData}: any) {
                 <div className="carousel-indicators">
                     {[...Array(3)].map((_, index) => (
                         <button
-                            key={index}
                             type="button"
                             data-bs-target="#myCarousel"
                             data-bs-slide-to={index}

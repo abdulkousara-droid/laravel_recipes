@@ -1,4 +1,4 @@
-export default function RecipeCardSm({ imgNumber,  title }: {imgNumber: number, title: string}) {
+export default function RecipeCardSm({ imgNumber,  title, featured }: {imgNumber: number, title: string, featured?: boolean}) {
     return (
         <article className="col-md-6 col-lg-3 col-12">
             <a href="single-recipe.html" className="effect-lily mc-post-link">
@@ -9,6 +9,12 @@ export default function RecipeCardSm({ imgNumber,  title }: {imgNumber: number, 
                         className="img-fluid"
                     />
                 </div>
+                {featured && (
+                    <span className="position-absolute mc-new-badge">
+                        <i className="fas fa-certificate"></i>
+                        Featured
+                    </span>
+                )}
                 <h2 className="mc-pt-30 mc-post-title">{title}</h2>
             </a>
             <div className="d-flex justify-content-between">

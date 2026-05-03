@@ -1,6 +1,7 @@
 import RecipeCardSm from '@/components/recipe-card-sm';
 
-export default function Contact({ contactDate }: any) {
+export default function Contact({ contactData, categories }: any) {
+     
     return (
         <>
             {/*    <!-- Search form --> */}
@@ -32,7 +33,7 @@ export default function Contact({ contactDate }: any) {
                     LATEST RECIPES
                 </h2>
                 <div className="row">
-                    {contactDate.map((latestRecipe: any) => {
+                    {contactData.map((latestRecipe: any) => {
 
                         const imgNumber = (latestRecipe.id % 6) + 1;
 
@@ -88,146 +89,33 @@ export default function Contact({ contactDate }: any) {
             </div>
 
             <div className="container px-4 py-5">
-                <h2 className="border-bottom d-flex justify-content-between mb-2 pb-2">
-                    Quick & Easy
-                    <a href="#!" className="btn btn-outline-dark">
-                        Browse All
-                    </a>
-                </h2>
-                <div className="row">
-                    <article className="col-md-6 col-lg-3 col-12">
-                        <a
-                            href="single-recipe.html"
-                            className="effect-lily mc-post-link"
-                        >
-                            <div className="mc-post-link-inner">
-                                <img
-                                    src="img/1.jpeg"
-                                    alt="Peanut Butter and Jelly"
-                                    className="img-fluid"
-                                />
-                            </div>
-                            <span className="position-absolute mc-new-badge">
-                                <i className="fas fa-certificate"></i>
-                                Featured
-                            </span>
-                        </a>
-                        <a href="single-recipe.html">
-                            <h2 className="mc-pt-20 mc-post-title">
-                                Peanut Butter and Jelly
+                {categories.map((category: any) => {
+                    return (
+                      <>
+                            <h2 className="border-bottom d-flex justify-content-between mb-2 pb-2">
+                                {category.title}
+                                <a href="#!" className="btn btn-outline-dark">
+                                    Browse All
+                                </a>
                             </h2>
-                        </a>
-                    </article>
-
-                    <article className="col-md-6 col-lg-3 col-12">
-                        <a
-                            href="single-recipe.html"
-                            className="effect-lily mc-post-link"
-                        >
-                            <div className="mc-post-link-inner">
-                                <img
-                                    src="img/2.jpeg"
-                                    alt="Image"
-                                    className="img-fluid"
-                                />
+                            <div className="row">
+                                {category.recipes.slice(0, 4).map((recipe: any) => {
+                                    const imgNumber = (recipe.id % 6) + 1;
+                                    console.log(recipe);
+                                    
+                                    return (
+                                        <RecipeCardSm
+                                            featured={recipe.is_featured ? true : false}
+                                            imgNumber={imgNumber}
+                                            title={recipe.title}
+                                        />
+                                    );
+                                })}
                             </div>
-                            <h2 className="mc-pt-30 mc-post-title">
-                                Buffalo Wings
-                            </h2>
-                        </a>
-                    </article>
-
-                    <article className="col-md-6 col-lg-3 col-12">
-                        <a
-                            href="single-recipe.html"
-                            className="effect-lily mc-post-link"
-                        >
-                            <div className="mc-post-link-inner">
-                                <img
-                                    src="img/3.jpeg"
-                                    alt="Image"
-                                    className="img-fluid"
-                                />
-                            </div>
-                            <h2 className="mc-pt-30 mc-post-title">
-                                Chocolate Chip Cookies
-                            </h2>
-                        </a>
-                    </article>
-
-                    <article className="col-md-6 col-lg-3 col-12">
-                        <a
-                            href="single-recipe.html"
-                            className="effect-lily mc-post-link"
-                        >
-                            <div className="mc-post-link-inner">
-                                <img
-                                    src="img/5.jpeg"
-                                    alt="Image"
-                                    className="img-fluid"
-                                />
-                            </div>
-                            <h2 className="mc-pt-30 mc-post-title">
-                                Macaroni & cheese
-                            </h2>
-                        </a>
-                    </article>
-                </div>
-            </div>
-
-            <div className="container px-4 py-5">
-                <h2 className="border-bottom d-flex justify-content-between mb-2 pb-2">
-                    Middle Eastern
-                    <a href="#!" className="btn btn-outline-dark">
-                        Browse All
-                    </a>
-                </h2>
-                <div className="row">
-                    <article className="col-md-6 col-lg-3 col-12">
-                        <a
-                            href="single-recipe.html"
-                            className="effect-lily mc-post-link mc-pt-20"
-                        >
-                            <div className="mc-post-link-inner">
-                                <img
-                                    src="img/6.jpeg"
-                                    alt="Image"
-                                    className="img-fluid"
-                                />
-                            </div>
-                            <h2 className="mc-pt-30 mc-post-title">
-                                Chicken Shawarma (Middle Eastern)
-                            </h2>
-                        </a>
-                    </article>
-
-                    <article className="col-md-6 col-lg-3 col-12">
-                        <a
-                            href="single-recipe.html"
-                            className="effect-lily mc-post-link mc-pt-20"
-                        >
-                            <div className="mc-post-link-inner">
-                                <img
-                                    src="img/4.jpeg"
-                                    alt="Image"
-                                    className="img-fluid"
-                                />
-                            </div>
-                            <h2 className="mc-pt-30 mc-post-title">
-                                Delicious Falafel Recipe (Fried or Baked)
-                            </h2>
-                        </a>
-                    </article>
-                </div>
-
-                <div className="row mt-5">
-                    <a
-                        href="#!"
-                        className="btn btn-outline-dark btn-xs w-100 px-4"
-                    >
-                        View All Categories
-                    </a>
-                </div>
+                       </>
+                    );
+                })}
+               
             </div>
 
             <div className="container my-5">
@@ -268,17 +156,6 @@ export default function Contact({ contactDate }: any) {
                     </div>
                 </div>
             </div>
-
-            {/*   <!--<footer className="row">
-            <hr className="col-12">
-            <div className="col-md-6 col-12 mc-color-gray">
-                Developed with 🤩️ by <a rel="nofollow" target="_parent" href="#!" className="mc-external-link">Your Name
-                Here Dear Laravel Developer</a>
-            </div>
-            <div className="col-md-6 col-12 mc-color-gray mc-copyright">
-                Copyleft 2023 Lara Recipes Ltd.
-            </div>
-        </footer>--> */}
         </>
     );
 }
