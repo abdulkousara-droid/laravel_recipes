@@ -1,9 +1,10 @@
 import NoData from '@/components/no-data';
 import HeaderLayout from '@/layouts/header-layout';
+import { Link } from '@inertiajs/react';
 
 export default function Categories({ categories }: any) {
     console.log(categories);
-    
+
     return (
         <>
             <HeaderLayout />
@@ -85,7 +86,8 @@ export default function Categories({ categories }: any) {
                                         <div className="row g-0 flex-md-row h-md-250 position-relative mb-4 overflow-hidden rounded border shadow-sm">
                                             <div className="col d-flex flex-column position-static p-4">
                                                 <strong className="d-inline-block text-primary-emphasis mb-2">
-                                                    {category.recipes_count} Recipes
+                                                    {category.recipes_count}{' '}
+                                                    Recipes
                                                 </strong>
                                                 <a href="#">
                                                     <h3 className="mb-0">
@@ -98,7 +100,7 @@ export default function Categories({ categories }: any) {
                                 );
                             })
                         ) : (
-                           <NoData />
+                            <NoData />
                         )}
                     </div>
                 </div>
@@ -107,39 +109,50 @@ export default function Categories({ categories }: any) {
                     <div className="d-flex justify-content-around col-12 text-center">
                         <nav aria-label="Page navigation example">
                             <ul className="pagination">
-                                <li className="page-item">
-                                    <a
-                                        className="page-link"
-                                        href="#"
-                                        aria-label="Previous"
-                                    >
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li className="page-item">
-                                    <a className="page-link" href="#">
-                                        1
-                                    </a>
-                                </li>
-                                <li className="page-item">
-                                    <a className="page-link" href="#">
-                                        2
-                                    </a>
-                                </li>
-                                <li className="page-item">
-                                    <a className="page-link" href="#">
-                                        3
-                                    </a>
-                                </li>
-                                <li className="page-item">
-                                    <a
-                                        className="page-link"
-                                        href="#"
-                                        aria-label="Next"
-                                    >
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
+                                {categories.links.map(
+                                    (link: any, index: number) => {
+                                        // Determine if this is the "Previous" or "Next" button based on the label
+                                        const isPrev =
+                                            link.label.includes('Previous');
+                                        const isNext =
+                                            link.label.includes('Next');
+
+                                        return (
+                                            <li
+                                                key={index}
+                                                className={`page-item ${link.active ? 'active' : ''} ${!link.url ? 'disabled' : ''}`}
+                                            >
+                                                <Link
+                                                    className="page-link"
+                                                    href={link.url || '#'}
+                                                    aria-label={
+                                                        isPrev
+                                                            ? 'Previous'
+                                                            : isNext
+                                                              ? 'Next'
+                                                              : undefined
+                                                    }
+                                                >
+                                                    {/* 
+                                If it's Prev or Next, we use your <span> structure.
+                                Otherwise, we just show the page number.
+                            */}
+                                                    {isPrev ? (
+                                                        <span aria-hidden="true">
+                                                            &laquo;
+                                                        </span>
+                                                    ) : isNext ? (
+                                                        <span aria-hidden="true">
+                                                            &raquo;
+                                                        </span>
+                                                    ) : (
+                                                        link.label
+                                                    )}
+                                                </Link>
+                                            </li>
+                                        );
+                                    },
+                                )}
                             </ul>
                         </nav>
                     </div>
