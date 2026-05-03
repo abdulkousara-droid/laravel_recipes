@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react';
+
 export default function HeaderLayout() {
     return (
         <>
@@ -27,13 +29,13 @@ export default function HeaderLayout() {
                                 </a>
                             </li>
                             <li className="mc-nav-item">
-                                <a
-                                    href="categories.html"
+                                <Link
+                                    href={route('categories.index')}
                                     className="mc-nav-link"
                                 >
                                     <i className="fas fa-cubes-stacked"></i>
                                     Categories
-                                </a>
+                                </Link>
                             </li>
                             <li className="mc-nav-item">
                                 <a
