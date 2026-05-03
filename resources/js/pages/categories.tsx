@@ -1,4 +1,5 @@
 import NoData from '@/components/no-data';
+import Pagination from '@/components/pagination';
 import HeaderLayout from '@/layouts/header-layout';
 import { Link } from '@inertiajs/react';
 
@@ -106,56 +107,7 @@ export default function Categories({ categories }: any) {
                 </div>
 
                 <div className="row mc-mb-40">
-                    <div className="d-flex justify-content-around col-12 text-center">
-                        <nav aria-label="Page navigation example">
-                            <ul className="pagination">
-                                {categories.links.map(
-                                    (link: any, index: number) => {
-                                        // Determine if this is the "Previous" or "Next" button based on the label
-                                        const isPrev =
-                                            link.label.includes('Previous');
-                                        const isNext =
-                                            link.label.includes('Next');
-
-                                        return (
-                                            <li
-                                                key={index}
-                                                className={`page-item ${link.active ? 'active' : ''} ${!link.url ? 'disabled' : ''}`}
-                                            >
-                                                <Link
-                                                    className="page-link"
-                                                    href={link.url || '#'}
-                                                    aria-label={
-                                                        isPrev
-                                                            ? 'Previous'
-                                                            : isNext
-                                                              ? 'Next'
-                                                              : undefined
-                                                    }
-                                                >
-                                                    {/* 
-                                If it's Prev or Next, we use your <span> structure.
-                                Otherwise, we just show the page number.
-                            */}
-                                                    {isPrev ? (
-                                                        <span aria-hidden="true">
-                                                            &laquo;
-                                                        </span>
-                                                    ) : isNext ? (
-                                                        <span aria-hidden="true">
-                                                            &raquo;
-                                                        </span>
-                                                    ) : (
-                                                        link.label
-                                                    )}
-                                                </Link>
-                                            </li>
-                                        );
-                                    },
-                                )}
-                            </ul>
-                        </nav>
-                    </div>
+                    <Pagination links={categories.links} />
                 </div>
             </main>
         </>
