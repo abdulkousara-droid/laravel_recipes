@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class CategoryController extends Controller
 {
-    public function index(Request $request)
-    {
+    public function index(Request $request){
+
            $q = $request->input('q');
            $categories = Category::withCount('recipes')
                             ->when($request->has('q') && $q, function(Builder $query) use ($q) {
@@ -19,5 +19,9 @@ class CategoryController extends Controller
                             ->withQueryString();
 
             return inertia('categories', compact('categories'));
+    }
+
+    public function show(Category $category){
+
     }
 }
