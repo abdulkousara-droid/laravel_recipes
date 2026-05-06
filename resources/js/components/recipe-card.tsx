@@ -29,17 +29,21 @@ export default function RecipeCard({ recipes, flags}: any) {
                             </a>
                             <div className="recipe-features d-flex flex-wrap gap-1">
 
-                                {flags.map((flag: any) => (
-                                    <span
-                                        key={flag.id}
-                                        className={`badge ${flag.cssClass}`}
-                                    >
-                                        <i
-                                            className={`fas ${flag.iconClass} me-1`}
-                                        ></i>
-                                        {flag.title}
-                                    </span>
-                                ))}
+                                {Object.entries(flags).map(([columnName, flagDetails]: [string, any]) => {
+                                    if (recipe[columnName]) {
+                                        return (
+                                            <span
+                                                key={columnName}
+                                                className={`badge ${flagDetails.cssClass}`}
+                                            >
+                                            <i className={`fas ${flagDetails.icon} me-1`}></i>
+                                                {flagDetails.title}
+                                        </span>
+                                        );
+                                    }
+
+                                    return null;
+                                })}
                             </div>
                             <a href="single-recipe.html">
                                 <h2 className="mc-pt-20 mc-post-title">

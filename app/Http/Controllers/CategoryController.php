@@ -32,7 +32,7 @@ class CategoryController extends Controller
                             })
                             ->paginate(4)
                             ->withQueryString();
-        $flags = array_values(Recipes::FLAGS);
+        $flags = Recipes::FLAGS;
         return inertia('categories-show', compact('category', 'recipes', 'flags'));
     }
 }
