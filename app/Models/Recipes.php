@@ -12,17 +12,50 @@ class Recipes extends Model
     /** @use HasFactory<\Database\Factories\RecipesFactory> */
     use HasFactory;
 
+    public const FLAGS = [
+        'is_low_carb' => [
+            'title' => 'Low Carb',
+            'cssClass' => 'text-bg-dark',
+            'icon' => 'fa-fire',
+        ],
+        'is_high_protein' => [
+            'title' => 'High Protein',
+            'cssClass' => 'text-bg-warning',
+            'icon' => 'fa-drumstick-bite',
+        ],
+        'is_spicy' => [
+            'title' => 'Spicy',
+            'cssClass' => 'text-bg-danger',
+            'icon' => 'fa-pepper-hot',
+        ],
+        'is_vegetarian' => [
+            'title' => 'Vegetarian',
+            'cssClass' => 'text-bg-success',
+            'icon' => 'fa-carrot',
+        ],
+        'is_vegan' => [
+            'title' => 'Vegan',
+            'cssClass' => 'text-bg-success',
+            'icon' => 'fa-apple-whole',
+        ],
+        'is_pescatarian' => [
+            'title' => 'Pescatarian',
+            'cssClass' => 'text-bg-info',
+            'icon' => 'fa-fish',
+        ],
+    ];
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
-    
+
     protected $appends = ['is_featured'];
-    
+
     public function isFeatured(): Attribute
     {
          return Attribute::make(get: function(mixed $value, array $attributes) {
             return (bool) $attributes['featured_at'];
          });
-    }  
+    }
 }

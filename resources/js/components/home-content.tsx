@@ -1,7 +1,7 @@
 import RecipeCardSm from '@/components/recipe-card-sm';
 
-export default function Contact({ contactData, categories }: any) {
-     
+export default function HomeContent({ contactData, categories }: any) {
+
     return (
         <>
             {/*    <!-- Search form --> */}
@@ -101,11 +101,10 @@ export default function Contact({ contactData, categories }: any) {
                             <div className="row">
                                 {category.recipes.slice(0, 4).map((recipe: any) => {
                                     const imgNumber = (recipe.id % 6) + 1;
-                                    console.log(recipe);
-                                    
+
                                     return (
                                         <RecipeCardSm
-                                            featured={recipe.is_featured ? true : false}
+                                            featured={!!recipe.is_featured}
                                             imgNumber={imgNumber}
                                             title={recipe.title}
                                         />
@@ -115,7 +114,7 @@ export default function Contact({ contactData, categories }: any) {
                        </>
                     );
                 })}
-               
+
             </div>
 
             <div className="container my-5">

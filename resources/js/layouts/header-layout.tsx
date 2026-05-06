@@ -14,7 +14,7 @@ export default function HeaderLayout() {
                     </button>
                     <div className="mc-site-header">
                         <a href="index.html" className="site-logo mx-auto mb-3">
-                            <img src="img/logo.png" alt="Logo" width="70px" />
+                            <img src="/img/logo.png" alt="Logo" width="70px" />
                         </a>
                         <h1 className="site-title text-center">
                             Lara<span className="fw-light">Recipes</span>

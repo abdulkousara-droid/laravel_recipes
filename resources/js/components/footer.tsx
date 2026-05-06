@@ -7,7 +7,7 @@ export default  function Footer(){
                         <a href="#!"
                            className="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none site-logo">
                             <div className="mc-site-header">
-                                <img src="img/logo.png" alt="Logo" width="70px"/>
+                                <img src="/img/logo.png" alt="Logo" width="70px"/>
                                 <h3 className="text-center site-title">
                                     Lara<span className="fw-light">Recipes</span>
                                 </h3>

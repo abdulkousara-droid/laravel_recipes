@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react'; // Use this for page titles/meta
 import Carousel from "@/components/carousel";
-import Contact from "@/components/contact";
 import Footer from "@/components/footer";
+import HomeContact from "@/components/home-content";
 import HeaderLayout from "@/layouts/header-layout";
 
 export default function Home({ carouselRecipes, latestRecipes, categories }: any) {
@@ -21,7 +21,7 @@ export default function Home({ carouselRecipes, latestRecipes, categories }: any
 
             <div className="container-fluid">
                 <main className="mc-main">
-                    <Contact contactData={latestRecipes} categories={categories} />
+                    <HomeContact contactData={latestRecipes} categories={categories} />
                 </main>
                 <Footer />
             </div>
