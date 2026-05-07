@@ -1,3 +1,5 @@
+import RecipeFeatures from '@/components/recipe-features';
+
 export default function RecipeCard({ recipes, flags}: any) {
     console.log(flags);
 
@@ -27,24 +29,9 @@ export default function RecipeCard({ recipes, flags}: any) {
                                     </span>
                                 )}
                             </a>
-                            <div className="recipe-features d-flex flex-wrap gap-1">
 
-                                {Object.entries(flags).map(([columnName, flagDetails]: [string, any]) => {
-                                    if (recipe[columnName]) {
-                                        return (
-                                            <span
-                                                key={columnName}
-                                                className={`badge ${flagDetails.cssClass}`}
-                                            >
-                                            <i className={`fas ${flagDetails.icon} me-1`}></i>
-                                                {flagDetails.title}
-                                        </span>
-                                        );
-                                    }
+                            <RecipeFeatures recipe={recipe} flags={flags} />
 
-                                    return null;
-                                })}
-                            </div>
                             <a href="single-recipe.html">
                                 <h2 className="mc-pt-20 mc-post-title">
                                     {recipe.title}

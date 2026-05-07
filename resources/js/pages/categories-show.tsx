@@ -1,9 +1,9 @@
+import { Link, usePage } from '@inertiajs/react';
 import Footer from "@/components/footer";
 import NoData from "@/components/no-data";
 import Pagination from "@/components/pagination";
 import RecipeCard from "@/components/recipe-card";
 import HeaderLayout from "@/layouts/header-layout";
-import { Link, usePage } from '@inertiajs/react';
 
 export default function CategoriesShow({category, recipes, flags}: any){
     console.log(category)
@@ -14,6 +14,7 @@ export default function CategoriesShow({category, recipes, flags}: any){
 
     return (
         <>
+            <title>{category.title}</title>
             <HeaderLayout />
 
             <main className="mc-main">

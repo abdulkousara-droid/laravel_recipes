@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
+use App\Models\Recipes;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -35,12 +37,26 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $categories = Category::withCount('recipes')
+            ->orderBy('recipes_count', 'desc')
+            ->take(5)
+            ->get();
+
+        $recipe = request('recipe');
+        $relateRecipes = Recipes::where('id' , '!=', $recipe->id)
+                                  ->where('category_id', $recipe->category_id)
+                                  ->whereNull('featured_at')
+                                  ->orderBy('view_count')
+                                  ->take(4)
+                                  ->get();
         return [
             ...parent::share($request),
             'name' => config('app.name'),
             'auth' => [
                 'user' => $request->user(),
             ],
+            'categories' => $categories,
+            'relateRecipes' => $relateRecipes,
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }

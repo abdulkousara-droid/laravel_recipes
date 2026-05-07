@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RecipeController;
 use App\Models\Recipes;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -10,3 +11,4 @@ use App\Http\Controllers\CategoryController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');

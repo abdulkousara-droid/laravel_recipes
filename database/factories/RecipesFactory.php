@@ -30,12 +30,12 @@ class RecipesFactory extends Factory
             'cooking_time' => fake()->randomElement([15, 30, 45, 60, 75, 90]),
             'servings' => fake()->randomElement([4, 5, 6]),
             'youtube_url' => fake()->randomElement([
-                    'https://www.youtube.com/watch?v=PUP7U5v2E98',
-                    'https://www.youtube.com/watch?v=WwZp5O7AKzE',
-                    'https://www.youtube.com/watch?v=Wf_v_rZpC_4',
-                    'https://www.youtube.com/watch?v=vVguXvX8Z0E',
-                    'https://www.youtube.com/watch?v=u69p-7_8S3U',
-                    'https://www.youtube.com/watch?v=p4vW7Xz678Y'
+                    'https://www.youtube.com/watch?v=4kyTkEItmDc',
+                    'https://www.youtube.com/watch?v=SMmEZTvDVHo',
+                    'https://www.youtube.com/watch?v=Rfl7ZZu1lfk',
+                    'https://www.youtube.com/watch?v=E4QTpcbV2_A',
+                    'https://www.youtube.com/watch?v=Dkzt0T82epY',
+                    'https://www.youtube.com/watch?v=GJrn18P71Rs'
             ]),
             'featured_at' => fake()->randomElement([true, false]) ? now() : null,
             'is_low_carb' => fake()->randomElement([true, false]),

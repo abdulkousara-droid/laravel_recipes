@@ -50,12 +50,48 @@ class Recipes extends Model
         return $this->belongsTo(Category::class);
     }
 
-    protected $appends = ['is_featured'];
+    protected $appends = ['is_featured', 'prepare_time_formatted', 'cooking_time_formatted'];
 
     public function isFeatured(): Attribute
     {
          return Attribute::make(get: function(mixed $value, array $attributes) {
             return (bool) $attributes['featured_at'];
          });
+    }
+
+    public function prepareTimeFormatted(): Attribute
+    {
+        return Attribute::make(get: function(mixed $value, array $attributes) {
+            $minutes = $attributes['prepare_time'];
+            return $this->formatTimeBasedOnMinutes($minutes);
+        });
+    }
+
+    public function cookingTimeFormatted(): Attribute
+    {
+        return Attribute::make(get: function(mixed $value, array $attributes) {
+            $minutes = $attributes['cooking_time'];
+            return $this->formatTimeBasedOnMinutes($minutes);
+        });
+    }
+
+    /**
+     * @param mixed $minutes
+     * @return string
+     */
+    public function formatTimeBasedOnMinutes(mixed $minutes): string
+    {
+        $hours = floor($minutes / 60);
+        $minutes = $minutes % 60;
+
+        $output = '';
+        if ($minutes > 0) {
+            $output = "{$minutes} min.";
+        }
+        if ($hours > 0) {
+            $output = "{$hours} hrs." . $output;
+        }
+
+        return $output;
     }
 }
