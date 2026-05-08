@@ -42,13 +42,19 @@ class HandleInertiaRequests extends Middleware
             ->take(5)
             ->get();
 
-        $recipe = request('recipe');
-        $relateRecipes = Recipes::where('id' , '!=', $recipe->id)
+        $relateRecipes = [];
+        $recipe = $request->route('recipe');
+
+        if ($recipe instanceof Recipes) {
+
+            $relateRecipes = Recipes::where('id' , '!=', $recipe->id)
                                   ->where('category_id', $recipe->category_id)
                                   ->whereNull('featured_at')
                                   ->orderBy('view_count')
                                   ->take(4)
                                   ->get();
+        }
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
