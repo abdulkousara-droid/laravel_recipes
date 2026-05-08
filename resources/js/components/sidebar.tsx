@@ -2,10 +2,10 @@ import { usePage } from '@inertiajs/react';
 import NoData from "@/components/no-data";
 
 export function Sidebar() {
-    const { categories, relateRecipes}: any = usePage().props;
+    const { categories, relatedRecipes}: any = usePage().props;
 
     console.log(categories);
-    console.log(relateRecipes);
+    console.log(relatedRecipes);
 
     return (
         <aside className="col-lg-4 mc-aside-col">
@@ -54,43 +54,24 @@ export function Sidebar() {
                 </ul>
                 <hr className="mc-hr-primary mb-3" />
                 <h2 className="mc-post-title mb-4">Related Recipes</h2>
-                <a href="#" className="d-block mc-mb-40">
-                    <figure>
-                        <img
-                            src="/img/2.jpeg"
-                            alt="Image"
-                            className="img-fluid rounded-3 mb-3 shadow-lg"
-                        />
-                        <figcaption className="mc-color-primary">
-                            Duis mollis diam nec ex viverra scelerisque a sit
-                        </figcaption>
-                    </figure>
-                </a>
-                <a href="#" className="d-block mc-mb-40">
-                    <figure>
-                        <img
-                            src="/img/6.jpeg"
-                            alt="Image"
-                            className="img-fluid rounded-3 mb-3 shadow-lg"
-                        />
-                        <figcaption className="mc-color-primary">
-                            Integer quis lectus eget justo ullamcorper
-                            ullamcorper
-                        </figcaption>
-                    </figure>
-                </a>
-                <a href="#" className="d-block mc-mb-40">
-                    <figure>
-                        <img
-                            src="/img/4.jpeg"
-                            alt="Image"
-                            className="img-fluid rounded-3 mb-3 shadow-lg"
-                        />
-                        <figcaption className="mc-color-primary">
-                            Nam lobortis nunc sed faucibus commodo
-                        </figcaption>
-                    </figure>
-                </a>
+                {relatedRecipes && relatedRecipes.length > 0 ? (relatedRecipes.map((recipe: any) => {
+                    const imgNumber = (recipe.id % 6) + 1;
+
+                    return (
+                        <a href="#" className="d-block mc-mb-40">
+                            <figure>
+                                <img
+                                    src={`/img/${imgNumber}.jpeg`}
+                                    alt={recipe.title}
+                                    className="img-fluid rounded-3 mb-3 shadow-lg"
+                                />
+                                <figcaption className="mc-color-primary">
+                                    {recipe.title}
+                                </figcaption>
+                            </figure>
+                        </a>
+                    );
+                })) : (<NoData />)}
             </div>
         </aside>
     );

@@ -42,15 +42,15 @@ class HandleInertiaRequests extends Middleware
             ->take(5)
             ->get();
 
-        $relateRecipes = [];
+        $relatedRecipes = [];
         $recipe = $request->route('recipe');
 
         if ($recipe instanceof Recipes) {
 
-            $relateRecipes = Recipes::where('id' , '!=', $recipe->id)
+            $relatedRecipes = Recipes::where('id' , '!=', $recipe->id)
                                   ->where('category_id', $recipe->category_id)
                                   ->whereNull('featured_at')
-                                  ->orderBy('view_count')
+                                  ->orderBy('view_count', 'DESC')
                                   ->take(4)
                                   ->get();
         }
@@ -62,7 +62,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'categories' => $categories,
-            'relateRecipes' => $relateRecipes,
+            'relatedRecipes' => $relatedRecipes,
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }
