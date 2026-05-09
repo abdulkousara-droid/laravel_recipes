@@ -1,11 +1,10 @@
 import Footer from '@/components/footer';
-import HeaderLayout from '@/layouts/header-layout';
-import RecipeFeatures from '@/components/recipe-features';
 import NoData from '@/components/no-data';
+import RecipeFeatures from '@/components/recipe-features';
 import { Sidebar } from '@/components/sidebar';
+import HeaderLayout from '@/layouts/header-layout';
 
 export default function RecipesShow({ recipe, flags, featuredRecipes }: any) {
-    console.log(recipe);
 
     return (
         <>

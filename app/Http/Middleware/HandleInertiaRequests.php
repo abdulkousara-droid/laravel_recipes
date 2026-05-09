@@ -2,8 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Category;
-use App\Models\Recipes;
+use App\Services\SharedDataService;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -37,23 +36,8 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $categories = Category::withCount('recipes')
-            ->orderBy('recipes_count', 'desc')
-            ->take(5)
-            ->get();
 
-        $relatedRecipes = [];
-        $recipe = $request->route('recipe');
-
-        if ($recipe instanceof Recipes) {
-
-            $relatedRecipes = Recipes::where('id' , '!=', $recipe->id)
-                                  ->where('category_id', $recipe->category_id)
-                                  ->whereNull('featured_at')
-                                  ->orderBy('view_count', 'DESC')
-                                  ->take(4)
-                                  ->get();
-        }
+        $sharedData = new SharedDataService();
 
         return [
             ...parent::share($request),
@@ -61,8 +45,10 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'categories' => $categories,
-            'relatedRecipes' => $relatedRecipes,
+            'footerData'=> $sharedData->getFooterData(),
+            'navLinks' => $sharedData->getNavigationLinks(),
+            'categories' => $sharedData->getCategories(),
+            'relatedRecipes' => $sharedData->getRelatedRecipes($request),
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }

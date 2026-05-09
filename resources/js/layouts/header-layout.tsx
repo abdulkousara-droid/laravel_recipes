@@ -1,6 +1,8 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 export default function HeaderLayout() {
+    const { navLinks }: any = usePage().props;
+
     return (
         <>
             <header className="mc-header" id="mc-header">
@@ -22,51 +24,23 @@ export default function HeaderLayout() {
                     </div>
                     <nav className="mc-nav" id="mc-nav">
                         <ul>
-                            <li className="mc-nav-item active">
-                                <a href="index.html" className="mc-nav-link">
-                                    <i className="fas fa-carrot"></i>
-                                    Home
-                                </a>
-                            </li>
-                            <li className="mc-nav-item">
-                                <Link
-                                    href={route('categories.index')}
-                                    className="mc-nav-link"
-                                >
-                                    <i className="fas fa-cubes-stacked"></i>
-                                    Categories
-                                </Link>
-                            </li>
-                            <li className="mc-nav-item">
-                                <a
-                                    href="single-category.html"
-                                    className="mc-nav-link"
-                                >
-                                    <i className="fas fa-cubes-stacked"></i>
-                                    Single Category
-                                </a>
-                            </li>
-                            <li className="mc-nav-item">
-                                <a
-                                    href="single-recipe.html"
-                                    className="mc-nav-link"
-                                >
-                                    <i className="fas fa-bowl-food"></i>
-                                    Single Recipe
-                                </a>
-                            </li>
-                            <li className="mc-nav-item">
-                                <a href="about.html" className="mc-nav-link">
-                                    <i className="fas fa-lemon"></i>
-                                    About Us
-                                </a>
-                            </li>
-                            <li className="mc-nav-item">
-                                <a href="contact.html" className="mc-nav-link">
-                                    <i className="fas fa-utensils"></i>
-                                    Contact Us
-                                </a>
-                            </li>
+                            {navLinks.map((link: any) => {
+                                return (
+                                    <li
+                                        className={`mc-nav-item ${link.cssClasses}`}
+                                    >
+                                        <Link
+                                            href={route(`${link.routeName}`)}
+                                            className="mc-nav-link"
+                                        >
+                                            <i
+                                                className={`fas fa-${link.icon}`}
+                                            ></i>
+                                            {link.title}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </nav>
                     <div className="mc-mb-65">

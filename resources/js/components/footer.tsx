@@ -1,4 +1,11 @@
+import {usePage} from "@inertiajs/react";
+
 export default  function Footer(){
+    const { footerData }: any = usePage().props;
+
+    const { categories, featuredRecipes } = footerData;
+
+
     return(
         <>
             <footer className="mc-main pt-5 mt-5 border-top">
@@ -27,62 +34,40 @@ export default  function Footer(){
                     <div className="col mb-3">
                         <h5>Categories</h5>
                         <ul className="nav flex-column">
-                            <li className="nav-item mb-2">
-                                <a href="#" className="nav-link p-0 text-body-secondary">
-                                    Category 1 <small>(12 recipes)</small>
-                                </a>
-                            </li>
-                            <li className="nav-item mb-2">
-                                <a href="#" className="nav-link p-0 text-body-secondary">
-                                    Category 2 <small>(7 recipes)</small>
-                                </a>
-                            </li>
-                            <li className="nav-item mb-2">
-                                <a href="#" className="nav-link p-0 text-body-secondary">
-                                    Category 3 <small>(6 recipes)</small>
-                                </a>
-                            </li>
-                            <li className="nav-item mb-2">
-                                <a href="#" className="nav-link p-0 text-body-secondary">
-                                    Category 4 <small>(6 recipes)</small>
-                                </a>
-                            </li>
-                            <li className="nav-item mb-2">
-                                <a href="#" className="nav-link p-0 text-body-secondary">
-                                    Category 5 <small>(4 recipes)</small>
-                                </a>
-                            </li>
+                            {categories.map((category: any) => {
+                                return (
+                                    <li className="nav-item mb-2">
+                                        <a
+                                            href="#"
+                                            className="nav-link text-body-secondary p-0"
+                                        >
+                                            {category.title.slice(0, 20)}{' '}
+                                            <small>({category.recipes_count} recipes)</small>
+                                        </a>
+                                    </li>
+                                );
+                            })}
+
                         </ul>
                     </div>
 
                     <div className="col mb-3">
                         <h5>Featured Recipes</h5>
                         <ul className="nav flex-column">
-                            <li className="nav-item mb-2">
-                                <a href="#" className="nav-link p-0 text-body-secondary">
-                                    Recipe title 1
-                                </a>
-                            </li>
-                            <li className="nav-item mb-2">
-                                <a href="#" className="nav-link p-0 text-body-secondary">
-                                    Recipe title 2
-                                </a>
-                            </li>
-                            <li className="nav-item mb-2">
-                                <a href="#" className="nav-link p-0 text-body-secondary">
-                                    Recipe title 3
-                                </a>
-                            </li>
-                            <li className="nav-item mb-2">
-                                <a href="#" className="nav-link p-0 text-body-secondary">
-                                    Recipe title 4
-                                </a>
-                            </li>
-                            <li className="nav-item mb-2">
-                                <a href="#" className="nav-link p-0 text-body-secondary">
-                                    Recipe title 5
-                                </a>
-                            </li>
+                            {featuredRecipes.map((recipe: any) => {
+
+                                return (
+                                    <li className="nav-item mb-2">
+                                        <a
+                                            href={route('recipes.show', recipe)}
+                                            className="nav-link text-body-secondary p-0"
+                                        >
+                                            {recipe.title.slice(0, 20)}
+                                        </a>
+                                    </li>
+                                );
+                            })}
+
                         </ul>
                     </div>
 
