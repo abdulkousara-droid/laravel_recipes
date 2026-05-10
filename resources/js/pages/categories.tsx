@@ -32,12 +32,13 @@ export default function Categories({ categories }: any) {
                                 your interests.
                             </p>
                             <div className="d-grid d-sm-flex justify-content-sm-center mb-5 gap-2">
-                                <button
+                                <Link
+                                    href={`${route('recipes.index')}?featured=1`}
                                     type="button"
                                     className="btn btn-warning btn-lg px-4"
                                 >
                                     Browse Featured Recipes
-                                </button>
+                                </Link>
                             </div>
                         </div>
                         <div

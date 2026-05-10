@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasViewCount;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -11,6 +12,7 @@ class Recipes extends Model
 {
     /** @use HasFactory<\Database\Factories\RecipesFactory> */
     use HasFactory;
+    use HasViewCount;
 
     public const FLAGS = [
         'is_low_carb' => [
@@ -94,4 +96,5 @@ class Recipes extends Model
 
         return $output;
     }
+
 }

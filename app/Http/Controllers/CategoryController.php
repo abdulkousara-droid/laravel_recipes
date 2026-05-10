@@ -33,6 +33,8 @@ class CategoryController extends Controller
                             ->paginate(4)
                             ->withQueryString();
         $flags = Recipes::FLAGS;
+        $category->viewed();
+
         return inertia('categories-show', compact('category', 'recipes', 'flags'));
     }
 }
