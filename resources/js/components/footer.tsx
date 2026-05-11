@@ -105,20 +105,20 @@ export default  function Footer(){
                                 </a>
                             </li>
                             <li className="nav-item mb-2">
-                                <a
-                                    href="faq.html"
+                                <Link
+                                    href={route('faq')}
                                     className="nav-link text-body-secondary p-0"
                                 >
                                     FAQs
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item mb-2">
-                                <a
-                                    href="#"
+                                <Link
+                                    href={route('about')}
                                     className="nav-link text-body-secondary p-0"
                                 >
                                     About
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>

@@ -29,3 +29,16 @@ Route::inertia('/privacy-policy', 'privacy-policy',[
 Route::inertia('/photo-usage-policy', 'photo-usage-policy',[
     'title' => 'Photo Usage Policy'
 ])->name('photo-usage-policy');
+
+Route::inertia('/about', 'about',[
+    'title' => 'About'
+])->name('about');
+
+Route::inertia('/faq', 'faq',[
+    'title' => 'FAQs'
+])->name('faq');
+
+Route::inertia('/contact-us', 'contact-us',[
+    'title' => 'Contact Us'
+])->name('contact-us');
+
