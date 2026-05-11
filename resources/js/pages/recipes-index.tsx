@@ -10,6 +10,7 @@ export default function RecipesIndex({ recipes, flags }: any) {
     const searchParams = new URLSearchParams(url.split('?')[1]);
     const searchTerm = searchParams.get('q') || '';
 
+    console.log(searchParams.get('featured'));
     return (
         <>
             <title>Recipes Catalog</title>
@@ -33,7 +34,7 @@ export default function RecipesIndex({ recipes, flags }: any) {
                             <input
                                 name="featured"
                                 type="hidden"
-                                value={url.includes('featured') ? '1' : '0'}
+                                value={searchParams.get('featured') ? '1' : '0'}
                             />
                             <button className="mc-search-button" type="submit">
                                 <i
@@ -52,7 +53,7 @@ export default function RecipesIndex({ recipes, flags }: any) {
                         ) : (
                             <>
                                 Collection of{' '}
-                                {url.includes('featured') && (
+                                {searchParams.get('featured') === '1' && (
                                     <span className="text-warning">
                                         Featured{' '}
                                     </span>
@@ -61,7 +62,7 @@ export default function RecipesIndex({ recipes, flags }: any) {
                             </>
                         )}
                     </h2>
-                    {url.includes('featured') ? (
+                    {searchTerm || searchParams.get('featured') === '1' ? (
                         <Link href={route('recipes.index')}>View All</Link>
                     ) : null}
                 </div>

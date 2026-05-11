@@ -17,3 +17,15 @@ Route::get('categories/{category}', [CategoryController::class, 'show'])->name('
 
 Route::get('recipes', [RecipeController::class, 'index'])->name('recipes.index');
 Route::get('recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+
+Route::inertia('/terms-and-conditions', 'terms-and-conditions',[
+'title' => 'Terms And Conditions'
+])->name('terms');
+
+Route::inertia('/privacy-policy', 'privacy-policy',[
+    'title' => 'Privacy Policy'
+])->name('privacy-policy');
+
+Route::inertia('/photo-usage-policy', 'photo-usage-policy',[
+    'title' => 'Photo Usage Policy'
+])->name('photo-usage-policy');
