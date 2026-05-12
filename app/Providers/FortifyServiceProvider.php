@@ -6,10 +6,13 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
+use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 
@@ -29,8 +32,41 @@ class FortifyServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureActions();
-        $this->configureViews();
+        //$this->configureViews();
         $this->configureRateLimiting();
+
+        Fortify::registerView(function () {
+            return Inertia::render('Auth/signup');
+        });
+
+        Fortify::loginView(function () {
+            return Inertia::render('Auth/signin');
+        });
+
+        $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
+            public function toResponse($request) {
+
+                Auth::logout();
+
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return redirect('/register')->with('message', [
+                    'title' => 'Registration Successful!',
+                    'subtitle' => 'Your account is ready. Please sign in.'
+                ]);
+            }
+        });
+
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+            public function toResponse($request) {
+                return redirect('/login')->with('message', [
+                    'title' => 'Login Successful!',
+                    'subtitle' => 'Welcome back! You can now browse your recipes.'
+                ]);
+            }
+        });
+
     }
 
     /**

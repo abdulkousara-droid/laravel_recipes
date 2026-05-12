@@ -1,27 +1,66 @@
 import { Link, usePage } from '@inertiajs/react';
 
 export default function HeaderLayout() {
-    const { navLinks }: any = usePage().props;
+    const { navLinks, auth }: any = usePage().props;
+    console.log(auth)
 
     return (
         <>
             <header className="mc-header" id="mc-header">
                 <div className="mc-header-wrapper">
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        aria-label="Toggle navigation"
-                    >
+                    <button className="navbar-toggler" type="button" aria-label="Toggle navigation">
                         <i className="fas fa-bars"></i>
                     </button>
+
                     <div className="mc-site-header">
-                        <a href="index.html" className="site-logo mx-auto mb-3">
+                        <Link href={route('home')} className="site-logo mx-auto mb-3">
                             <img src="/img/logo.png" alt="Logo" width="70px" />
-                        </a>
+                        </Link>
                         <h1 className="site-title text-center">
                             Lara<span className="fw-light">Recipes</span>
                         </h1>
+
+                        <div className="px-4 py-3 mb-4 border-top border-bottom bg-light-subtle rounded-3">
+                            {auth.user ? (
+                                <div className="text-center">
+                                    <div className="d-flex align-items-center justify-content-center mb-2">
+                                        {/* Optional: Simple User Icon */}
+                                        <i className="fas fa-user-circle mc-color-primary me-2"></i>
+                                        <span className="text-dark small fw-bold">
+                    {auth.user.name}
+                </span>
+                                    </div>
+
+                                    <Link
+                                        href="/logout"
+                                        method="post"
+                                        as="button"
+                                        className="btn btn-sm btn-outline-danger w-100"
+                                        style={{ fontSize: '0.75rem', borderRadius: '20px' }}
+                                    >
+                                        <i className="fas fa-sign-out-alt me-1"></i> Sign Out
+                                    </Link>
+                                </div>
+                            ) : (
+                                <div className="d-grid gap-2">
+                                    <Link
+                                        href="/login"
+                                        className="mc-btn mc-btn-primary mc-btn-small text-center"
+                                    >
+                                        <i className="fas fa-key me-1"></i> Sign In
+                                    </Link>
+                                    <Link
+                                        href="/register"
+                                        className="mc-btn mc-btn-outline mc-btn-small text-center border-secondary text-secondary"
+                                    >
+                                        <i className="fas fa-user-plus me-1"></i> Sign Up
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
                     </div>
+
+                    
                     <nav className="mc-nav" id="mc-nav">
                         <ul>
                             {navLinks.map((link: any) => {

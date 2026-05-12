@@ -46,3 +46,11 @@ Route::get('test-mail', function () {
 
    return new ContactFrom($formResponse);
 });
+
+Route::get('/login', function () {
+    return inertia('Auth/signin');
+})->name('login');
+
+Route::get('/register', function () {
+    return inertia('Auth/signup');
+})->name('register');

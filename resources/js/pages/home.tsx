@@ -1,11 +1,13 @@
-import { Head } from '@inertiajs/react'; // Use this for page titles/meta
+import { Head, Link, usePage } from '@inertiajs/react'; // Use this for page titles/meta
 import Carousel from "@/components/carousel";
 import Footer from "@/components/footer";
 import HomeContact from "@/components/home-content";
 import HeaderLayout from "@/layouts/header-layout";
 
 export default function Home({ carouselRecipes, latestRecipes, categories }: any) {
+    const { auth }: any = usePage().props;
 
+    console.log(auth)
     return (
         <>
             <Head>
@@ -21,7 +23,10 @@ export default function Home({ carouselRecipes, latestRecipes, categories }: any
 
             <div className="container-fluid">
                 <main className="mc-main">
-                    <HomeContact contactData={latestRecipes} categories={categories} />
+                    <HomeContact
+                        contactData={latestRecipes}
+                        categories={categories}
+                    />
                 </main>
                 <Footer />
             </div>

@@ -4,9 +4,6 @@ import NoData from "@/components/no-data";
 export function Sidebar() {
     const { categories, relatedRecipes}: any = usePage().props;
 
-    console.log(categories);
-    console.log(relatedRecipes);
-
     return (
         <aside className="col-lg-4 mc-aside-col">
             <div className="mc-post-sidebar">

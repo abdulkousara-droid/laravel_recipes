@@ -126,7 +126,7 @@ hr {
 
 .mc-site-header {
     margin-top: 50px;
-    margin-bottom: 115px;
+    margin-bottom: 50px; /*was 115 without signup card*/
 }
 
 .site-logo {
