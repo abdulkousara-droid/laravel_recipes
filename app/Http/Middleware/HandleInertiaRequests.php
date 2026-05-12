@@ -45,6 +45,9 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'flash' => [
+                'message' => fn () => $request->session()->get('message'),
+            ],
             'footerData'=> $sharedData->getFooterData(),
             'navLinks' => $sharedData->getNavigationLinks(),
             'categories' => $sharedData->getCategories(),

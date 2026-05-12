@@ -56,7 +56,7 @@ class SharedDataService
             [
                 'title' => 'Contact Us',
                 'icon' => 'utensils',
-                'routeName' => 'pages.contact',
+                'routeName' => 'contact-us',
                 'cssClasses' => $this->getClasses('pages.contact')
             ]
         ]);
@@ -69,7 +69,7 @@ class SharedDataService
             'home' => ['home'],
             'categories.index' => ['categories.index', 'categories.show'],
             'recipes.index' => ['recipes.index', 'recipes.show'],
-            'pages.contact' => ['pages.contact'],
+            'pages.contact' => ['contact-us'],
             default => [],
         };
 
