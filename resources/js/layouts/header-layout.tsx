@@ -20,7 +20,8 @@ export default function HeaderLayout() {
                             Lara<span className="fw-light">Recipes</span>
                         </h1>
 
-                        <div className="px-4 py-3 mb-4 border-top border-bottom bg-light-subtle rounded-3">
+                        <div className="px-2 py-2 mb-2
+                         border-top border-bottom bg-light-subtle rounded-3">
                             {auth.user ? (
                                 <div className="text-center">
                                     <div className="d-flex align-items-center justify-content-center mb-2">
@@ -60,7 +61,7 @@ export default function HeaderLayout() {
                         </div>
                     </div>
 
-                    
+
                     <nav className="mc-nav" id="mc-nav">
                         <ul>
                             {navLinks.map((link: any) => {
